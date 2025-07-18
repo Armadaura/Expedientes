@@ -69,7 +69,7 @@
             color: #333;
             font-weight: 500;
         }
-        input[type="text"], input[type="password"], input[type="file"] {
+        input[type="text"], input[type="password"], input[type="file"], input[type="number"], input[type="email"], select {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
@@ -77,7 +77,7 @@
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
-        input[type="text"]:focus, input[type="password"]:focus {
+        input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus {
             outline: none;
             border-color: #ff0000;
         }
@@ -312,7 +312,7 @@
         <!-- Login Screen -->
         <div id="loginScreen" class="login-container">
             <div class="login-image">
-                <img src="https://mistralaichatupprodswe.blob.core.windows.net/chat-images/53/47/eb/5347eb27-b18d-4953-9753-e7133d7a3428/fb0378dd-e6dd-43bb-885f-a3d5d76a404c/9e33c3a5-4863-4b4e-b3a0-723aeed49bd8?sv=2025-01-05&st=2025-07-18T15%3A46%3A17Z&se=2025-07-18T16%3A46%3A17Z&sr=b&sp=rade&sig=KDmUwDKjPtQiDMZJFo0jCK%2BOin5tfrcYIw1Z%2FZL4hK0%3D" alt="Logo">
+                <img src="https://scontent.fuio1-1.fna.fbcdn.net/v/t39.30808-6/359756210_716457173620277_4779356943511722203_n.png?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=jqfGuR3Ja_4Q7kNvwGcaAEr&_nc_oc=Adn5LqY_DLt_wAmc88tae-6b8NiHM1ZBY7ldOwV4MWpZt0Na929sD2YHJMUTLUmGyezGmP_oXFfKTZYyKcrtixW7&_nc_zt=23&_nc_ht=scontent.fuio1-1.fna&_nc_gid=6GW8Nu2MHmOMvKsibWjEDg&oh=00_AfTf8-rEj34A29Du1YBoWT0x7_gMRAhLe1Dw-PizvB-jKg&oe=68803D0F" alt="Logo">
             </div>
             <div class="login-form">
                 <h2 style="margin-bottom: 30px; color: #333;">Iniciar Sesión</h2>
@@ -340,12 +340,45 @@
                 <h2 style="margin-bottom: 30px; color: #333;">Crear Cuenta</h2>
                 <form id="registerForm">
                     <div class="form-group">
+                        <label for="regCedula">Cédula:</label>
+                        <input type="text" id="regCedula" name="regCedula" required>
+                    </div>
+                    <div class="form-group">
                         <label for="regName">Nombre:</label>
                         <input type="text" id="regName" name="regName" required>
                     </div>
                     <div class="form-group">
                         <label for="regLastName">Apellido:</label>
                         <input type="text" id="regLastName" name="regLastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regGenero">Género:</label>
+                        <select id="regGenero" name="regGenero" required>
+                            <option value="">Seleccione...</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="regCarrera">Carrera:</label>
+                        <select id="regCarrera" name="regCarrera" required>
+                            <option value="">Seleccione...</option>
+                            <option value="Administración Financiera">Administración Financiera</option>
+                            <option value="Contabilidad">Contabilidad</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Mercadotecnia">Mercadotecnia</option>
+                            <option value="Gestión Tecnología de Información">Gestión Tecnología de Información</option>
+                            <option value="Desarrollo de Software">Desarrollo de Software</option>
+                            <option value="Redes y Telecomunicación">Redes y Telecomunicación</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEdad">Edad:</label>
+                        <input type="number" id="regEdad" name="regEdad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Correo Electrónico:</label>
+                        <input type="email" id="regEmail" name="regEmail" required>
                     </div>
                     <div class="form-group">
                         <label for="regUsername">Nombre de Usuario:</label>
@@ -390,56 +423,75 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
+                            <th>Género</th>
+                            <th>Carrera</th>
+                            <th>Edad</th>
+                            <th>Correo Electrónico</th>
                             <th>Usuario</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="usersTableBody">
+                        <!-- User data will be inserted here by JavaScript -->
                     </tbody>
                 </table>
             </div>
             <!-- Document Structure -->
             <div class="folder-structure">
                 <div class="folder">
-                    <h3><span class="folder-icon">📁</span> 1. Datos Personales </h3>
+                    <h3><span class="folder-icon">📁</span> 1. Datos Personales</h3>
                     <div class="file-upload">
-                       <p> Ingrese hoja de Vida </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-						<p> Ingrese copia de cedula y papeleta de votación </p>  <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-						<p> Ingrese Certificado de no Tener impedimiento </p>  <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-						<p> Ingrese Resumen Mecanizado del IESS </p>  <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
+                        <p>Ingrese hoja de Vida</p>
+                        <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
+                        <p>Ingrese copia de cédula y papeleta de votación</p>
+                        <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
+                        <p>Ingrese Certificado de no Tener impedimento</p>
+                        <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
+                        <p>Ingrese Resumen Mecanizado del IESS</p>
+                        <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
                     </div>
                     <div class="file-list" id="datos-personales-files"></div>
                 </div>
             </div>
             <div class="folder-structure">
                 <div class="folder">
-                    <h3><span class="folder-icon">📁</span> 📁 2. Formación académica </h3>
-					<h3><span class="folder-icon">📁</span> 📁  2.1. CONSULTA SENESCYT </h3>
-					<p> Ingrese certificado de SENESSYT </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-					<p> Ingrese Los titulos de tercer nivel </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
+                    <h3><span class="folder-icon">📁</span> 2. Formación Académica</h3>
+                    <h3><span class="folder-icon">📁</span> 2.1. CONSULTA SENESCYT</h3>
+                    <p>Ingrese certificado de SENESCYT</p>
+                    <input type="file" id="formacion-academica-upload" accept=".pdf" onchange="handleFileUpload(this, 'formacion-academica')">
+                    <p>Ingrese los títulos de tercer nivel</p>
+                    <input type="file" id="formacion-academica-upload" accept=".pdf" onchange="handleFileUpload(this, 'formacion-academica')">
                     <div class="file-upload">
-                        <p> Ingrese Los titulos de cuarto nivel </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
+                        <p>Ingrese los títulos de cuarto nivel</p>
+                        <input type="file" id="formacion-academica-upload" accept=".pdf" onchange="handleFileUpload(this, 'formacion-academica')">
                     </div>
-                     <div class="file-list" id="datos-personales-files"></div>
+                    <div class="file-list" id="formacion-academica-files"></div>
                 </div>
             </div>
-			 <h3><span class="folder-icon">📁</span> 📁 3. Actualización académica </h3>
-			 <p> Ingrese todas las actualizaciones academicas y poner una hoja de los años </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-             <h3><span class="folder-icon">📁</span> 📁 4.Experiencia Profesional </h3>
-			 <p> Ingrese aqui </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-             <h3><span class="folder-icon">📁</span> 📁 5.Relacion Laboral </h3>
-			 <p> Ingrese aqui </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-             <h3><span class="folder-icon">📁</span> 📁 6.Cargos directivos </h3>
-			 <p> Ingrese aqui </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-                <h3><span class="folder-icon">📁</span> 📁 7.Vinculacion con la colectividad </h3>
-			 <p> Ingrese aqui </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-              <h3><span class="folder-icon">📁</span> 📁 8.Investigación </h3>
-			 <p> Ingrese aqui </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-               <h3><span class="folder-icon">📁</span> 📁 9.Publicaciones </h3>
-			 <p> Ingrese aqui </p> <input type="file" id="datos-personales-upload" accept=".pdf" onchange="handleFileUpload(this, 'datos-personales')">
-              
+            <h3><span class="folder-icon">📁</span> 3. Actualización Académica</h3>
+            <p>Ingrese todas las actualizaciones académicas y ponga una hoja de los años</p>
+            <input type="file" id="actualizacion-academica-upload" accept=".pdf" onchange="handleFileUpload(this, 'actualizacion-academica')">
+            <h3><span class="folder-icon">📁</span> 4. Experiencia Profesional</h3>
+            <p>Ingrese aquí</p>
+            <input type="file" id="experiencia-profesional-upload" accept=".pdf" onchange="handleFileUpload(this, 'experiencia-profesional')">
+            <h3><span class="folder-icon">📁</span> 5. Relación Laboral</h3>
+            <p>Ingrese aquí</p>
+            <input type="file" id="relacion-laboral-upload" accept=".pdf" onchange="handleFileUpload(this, 'relacion-laboral')">
+            <h3><span class="folder-icon">📁</span> 6. Cargos Directivos</h3>
+            <p>Ingrese aquí</p>
+            <input type="file" id="cargos-directivos-upload" accept=".pdf" onchange="handleFileUpload(this, 'cargos-directivos')">
+            <h3><span class="folder-icon">📁</span> 7. Vinculación con la Colectividad</h3>
+            <p>Ingrese aquí</p>
+            <input type="file" id="vinculacion-colectividad-upload" accept=".pdf" onchange="handleFileUpload(this, 'vinculacion-colectividad')">
+            <h3><span class="folder-icon">📁</span> 8. Investigación</h3>
+            <p>Ingrese aquí</p>
+            <input type="file" id="investigacion-upload" accept=".pdf" onchange="handleFileUpload(this, 'investigacion')">
+            <h3><span class="folder-icon">📁</span> 9. Publicaciones</h3>
+            <p>Ingrese aquí</p>
+            <input type="file" id="publicaciones-upload" accept=".pdf" onchange="handleFileUpload(this, 'publicaciones')">
         </div>
     </div>
     <!-- PDF Preview Modal -->
@@ -453,10 +505,11 @@
     <script>
         // Simulated database
         let users = [
-            { id: 1, name: 'Admin', username: 'admin', password: 'bolivar2025', isAdmin: true }
+            { id: 1, name: 'Admin', lastName: 'Admin', cedula: '0000000000', genero: 'Masculino', carrera: 'Administración', edad: 30, email: 'admin@example.com', username: 'admin', password: 'bolivar2025', isAdmin: true }
         ];
         let userFiles = {};
         let currentUser = null;
+
         // Login functionality
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -477,17 +530,25 @@
                 document.getElementById('loginError').textContent = 'Usuario o contraseña incorrectos';
             }
         });
+
         // Register functionality
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            const cedula = document.getElementById('regCedula').value;
             const name = document.getElementById('regName').value;
             const lastName = document.getElementById('regLastName').value;
+            const genero = document.getElementById('regGenero').value;
+            const carrera = document.getElementById('regCarrera').value;
+            const edad = document.getElementById('regEdad').value;
+            const email = document.getElementById('regEmail').value;
             const username = document.getElementById('regUsername').value;
             const password = document.getElementById('regPassword').value;
             const confirmPassword = document.getElementById('regConfirmPassword').value;
+
             // Clear previous messages
             document.getElementById('registerError').textContent = '';
             document.getElementById('registerSuccess').textContent = '';
+
             // Validation
             if (password !== confirmPassword) {
                 document.getElementById('registerError').textContent = 'Las contraseñas no coinciden';
@@ -497,35 +558,46 @@
                 document.getElementById('registerError').textContent = 'El nombre de usuario ya existe';
                 return;
             }
+
             // Create new user
             const newUser = {
                 id: users.length + 1,
+                cedula: cedula,
                 name: name,
                 lastName: lastName,
+                genero: genero,
+                carrera: carrera,
+                edad: edad,
+                email: email,
                 username: username,
                 password: password,
                 isAdmin: false
             };
             users.push(newUser);
             document.getElementById('registerSuccess').textContent = 'Usuario registrado exitosamente';
+
             // Clear form
             document.getElementById('registerForm').reset();
+
             // Auto switch to login after 2 seconds
             setTimeout(() => {
                 showLogin();
             }, 2000);
         });
+
         function showRegister() {
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('registerScreen').classList.remove('hidden');
             document.getElementById('loginError').textContent = '';
         }
+
         function showLogin() {
             document.getElementById('registerScreen').classList.add('hidden');
             document.getElementById('loginScreen').classList.remove('hidden');
             document.getElementById('registerError').textContent = '';
             document.getElementById('registerSuccess').textContent = '';
         }
+
         function logout() {
             currentUser = null;
             document.getElementById('mainContent').classList.add('hidden');
@@ -534,6 +606,7 @@
             document.getElementById('loginForm').reset();
             document.getElementById('loginError').textContent = '';
         }
+
         function loadUsersTable() {
             const tbody = document.getElementById('usersTableBody');
             tbody.innerHTML = '';
@@ -542,8 +615,13 @@
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${user.id}</td>
+                        <td>${user.cedula}</td>
                         <td>${user.name}</td>
                         <td>${user.lastName}</td>
+                        <td>${user.genero}</td>
+                        <td>${user.carrera}</td>
+                        <td>${user.edad}</td>
+                        <td>${user.email}</td>
                         <td>${user.username}</td>
                         <td>
                             <button class="btn btn-danger" onclick="deleteUser(${user.id})">Eliminar</button>
@@ -553,6 +631,7 @@
                 }
             });
         }
+
         function deleteUser(userId) {
             if (confirm('¿Está seguro de que desea eliminar este usuario?')) {
                 users = users.filter(u => u.id !== userId);
@@ -560,21 +639,25 @@
                 loadUsersTable();
             }
         }
+
         function handleFileUpload(input, category) {
             const file = input.files[0];
             if (!file) return;
+
             // Validate file type
             if (file.type !== 'application/pdf') {
                 alert('Solo se permiten archivos PDF');
                 input.value = '';
                 return;
             }
+
             // Validate file size (5MB)
             if (file.size > 5 * 1024 * 1024) {
                 alert('El archivo no debe superar los 5MB');
                 input.value = '';
                 return;
             }
+
             // Initialize user files if not exists
             if (!userFiles[currentUser.id]) {
                 userFiles[currentUser.id] = {};
@@ -582,6 +665,7 @@
             if (!userFiles[currentUser.id][category]) {
                 userFiles[currentUser.id][category] = [];
             }
+
             // Create file object
             const fileObj = {
                 id: Date.now(),
@@ -591,11 +675,14 @@
                 uploadDate: new Date().toLocaleDateString()
             };
             userFiles[currentUser.id][category].push(fileObj);
+
             // Clear input
             input.value = '';
+
             // Update file list
             updateFileList(category);
         }
+
         function updateFileList(category) {
             const fileList = document.getElementById(`${category}-files`);
             fileList.innerHTML = '';
@@ -616,34 +703,41 @@
                 });
             }
         }
+
         function viewPdf(url, filename) {
             document.getElementById('pdfTitle').textContent = `Vista Previa: ${filename}`;
             document.getElementById('pdfPreview').src = url;
             document.getElementById('pdfModal').style.display = 'block';
         }
+
         function closePdfModal() {
             document.getElementById('pdfModal').style.display = 'none';
             document.getElementById('pdfPreview').src = '';
         }
+
         function deleteFile(fileId, category) {
             if (confirm('¿Está seguro de que desea eliminar este archivo?')) {
                 userFiles[currentUser.id][category] = userFiles[currentUser.id][category].filter(file => file.id !== fileId);
                 updateFileList(category);
             }
         }
+
         function updateFile(fileId, category, input) {
             const file = input.files[0];
             if (!file) return;
+
             if (file.type !== 'application/pdf') {
                 alert('Solo se permiten archivos PDF');
                 input.value = '';
                 return;
             }
+
             if (file.size > 5 * 1024 * 1024) {
                 alert('El archivo no debe superar los 5MB');
                 input.value = '';
                 return;
             }
+
             if (confirm('¿Está seguro de que desea actualizar este archivo?')) {
                 const fileIndex = userFiles[currentUser.id][category].findIndex(file => file.id == fileId);
                 if (fileIndex !== -1) {
@@ -658,6 +752,7 @@
                 }
             }
         }
+
         function loadUserFiles() {
             if (userFiles[currentUser.id]) {
                 Object.keys(userFiles[currentUser.id]).forEach(category => {
